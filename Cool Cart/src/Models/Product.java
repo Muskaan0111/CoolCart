@@ -16,7 +16,7 @@ public class Product {
     public float minQty;
 
     //for variants
-    public List<Variant> variants;
+    public List<Variant> variants = new ArrayList<>();
 
     public Product(){
 

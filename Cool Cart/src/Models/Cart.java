@@ -48,13 +48,13 @@ public class Cart {
         return (int) mapOfItems.get(detector).qty;
     }
 
-    public int removeFromCart(Product product, Variant variant){
+    public int removeFromCart(Product product, Variant variant) {
 
-        String detector =  product.name+" "+variant.name;
-
+        String detector = product.name + " " + variant.name;
+        if(mapOfItems.containsKey(detector)){
         mapOfItems.get(detector).qty--;
 
-        if(mapOfItems.get(detector).qty==0){
+        if (mapOfItems.get(detector).qty == 0) {
             mapOfItems.remove(detector);
         }
 
@@ -65,10 +65,10 @@ public class Cart {
         allVariantsQty.put(product.name, qty);
 
 
-        if(allVariantsQty.get(product.name) == 0)
-            allVariantsQty.remove(product.name);
+        if (allVariantsQty.get(product.name) == 0)
+        {allVariantsQty.remove(product.name);}
 
-
+    }
     return mapOfItems.containsKey(detector)?(int) mapOfItems.get(detector).qty : 0;
 
 
@@ -122,6 +122,7 @@ public class Cart {
 
                subTotal -= mapOfItems.get(detector).price;
               noOfTotalItems -= mapOfItems.get(detector).qty;
+              mapOfItems.remove(detector);
            }
        }
 
@@ -137,6 +138,7 @@ public class Cart {
    public ArrayList<String> getData(Product product){
 
       ArrayList<String> information = new ArrayList<>();
+      information.add("Name Of Product = "+ product.name);
       information.add("Subtotal = "+ subTotal);
       information.add("Number Of Total Items = "+ noOfTotalItems);
 
